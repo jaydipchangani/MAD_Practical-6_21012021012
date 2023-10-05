@@ -1,36 +1,32 @@
-package com.example.mad_practical_6_21012021012
+package com.example.mad_practical_6_210120121012
 
-import android.R.attr.button
 import android.content.Intent
-import android.os.Bundle
-import android.view.View
-import android.widget.Button
 import androidx.appcompat.app.AppCompatActivity
-
+import android.os.Bundle
+import android.widget.Button
+import com.google.android.material.floatingactionbutton.FloatingActionButton
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        val start : Button = findViewById(R.id.button)
+        val start : FloatingActionButton = findViewById(R.id.play_button)
         start.setOnClickListener {
-            playpause()
+            play()
         }
 
-        val stop : Button = findViewById(R.id.button2)
+        val stop : FloatingActionButton = findViewById(R.id.stop_button)
         stop.setOnClickListener {
-            stop()
+            pause()
         }
     }
 
-    fun playpause(){
-        Intent(applicationContext,MyService::class.java).putExtra(MyService.PLAYERKEY,MyService.PLAYERVALUE).apply { startService(this) }
+    fun play(){
+        Intent(applicationContext,MyService::class.java).putExtra(MyService.PLAYERCONSTANT,"abc").apply { startService(this) }
     }
 
-    fun stop(){
-        Intent(applicationContext,MyService::class.java).putExtra(MyService.PLAYERKEY,MyService.PLAYERVALUE).apply { stopService(this) }
+    fun pause(){
+        Intent(applicationContext,MyService::class.java).putExtra(MyService.PLAYERCONSTANT,"xyz").apply { stopService(this) }
     }
-
-
 }
